@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price_tracker</title>    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        input, select {
+            padding: 8px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+        }
+
+        p {
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>House Price Tracker</h1>        
+        <h3>Track Flat Rent Prices</h3>
+    </header>
+
+    <div class="container">
+        <form method="post" action="{% url 'predict' %}">
+            {% csrf_token %}
+            <label for="{{ form.bedrooms.id_for_label }}">Bedrooms (BHK):</label>
+            {{ form.bedrooms }}
+            
+            <label for="{{ form.location.id_for_label }}">Choose Location:</label>
+            {{ form.location }}
+            
+            <label for="{{ form.square_footage.id_for_label }}">Square footage:</label>
+            {{ form.square_footage }}
+            
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if form.is_valid %}
+            <p>Predicted Price : Rs. {{ predicted_price }} Only.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
