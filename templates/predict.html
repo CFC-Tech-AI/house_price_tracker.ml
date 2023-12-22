@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Price_tracker</title>    
+    <title>Price Tracker</title>    
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #b0c4de; /* LightSteelBlue - a calming background */
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
         }
 
         header {
             background-color: #333;
             color: #fff;
-            padding: 10px;
+            padding: 20px;
             text-align: center;
+            font-size: 2rem;
+            width: 100%;
         }
 
         .container {
@@ -24,42 +31,58 @@
             margin: 20px auto;
             background-color: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
 
         form {
             display: flex;
             flex-direction: column;
+            align-items: center;
         }
 
         label {
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+            color: #333;
         }
 
         input, select {
-            padding: 8px;
-            margin-bottom: 16px;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            background-color: #f0f8ff; /* AliceBlue - a soft touch */
+            border: 2px solid #333;
+            border-radius: 8px;
         }
 
         button {
             background-color: #333;
             color: #fff;
-            padding: 10px;
+            padding: 14px 28px;
             cursor: pointer;
             border: none;
-            border-radius: 4px;
+            border-radius: 10px;
+            font-size: 1.4rem;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #1a1a1a; /* DarkGray - a mysterious twist */
         }
 
         p {
-            margin-top: 16px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <header>
         <h1>House Price Tracker</h1>        
-        <h3>Track Flat Rent Prices</h3>
+        <h3>Track Flat Rent Prices with a Twist</h3>
     </header>
 
     <div class="container">
@@ -68,17 +91,17 @@
             <label for="{{ form.bedrooms.id_for_label }}">Bedrooms (BHK):</label>
             {{ form.bedrooms }}
             
-            <label for="{{ form.location.id_for_label }}">Choose Location:</label>
+            <label for="{{ form.location.id_for_label }}">Location:</label>
             {{ form.location }}
             
-            <label for="{{ form.square_footage.id_for_label }}">Square footage:</label>
+            <label for="{{ form.square_footage.id_for_label }}">Square footage (Sqft):</label>
             {{ form.square_footage }}
             
-            <button type="submit">Predict</button>
+            <button type="submit">Unleash Prediction</button>
         </form>
 
         {% if form.is_valid %}
-            <p>Predicted Price : Rs. {{ predicted_price }} Only.</p>
+            <p>Predicted Price: Rs. {{ predicted_price }} Only.</p>
         {% endif %}
     </div>
 </body>
